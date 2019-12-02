@@ -62,7 +62,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <StateMachine InitialState="{x:Reference __ReferenceID8}" sap2010:Annotation.AnnotationText="-- Robotic Enterprise Framework configured to take input from an Excel Workbook. --&#xA;-- TEMPLATE--" DisplayName="General Business Process" sap:VirtualizedContainerService.HintSize="806,789.333333333333" sap2010:WorkflowViewState.IdRef="StateMachine_1">
+  <StateMachine InitialState="{x:Reference __ReferenceID9}" sap2010:Annotation.AnnotationText="-- Robotic Enterprise Framework configured to take input from an Excel Workbook. --&#xA;-- TEMPLATE--" DisplayName="General Business Process" sap:VirtualizedContainerService.HintSize="806,789.333333333333" sap2010:WorkflowViewState.IdRef="StateMachine_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -73,7 +73,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <State x:Name="__ReferenceID5" sap2010:Annotation.AnnotationText="Get next transaction input data" DisplayName="Get Transaction Data" sap:VirtualizedContainerService.HintSize="251.333333333333,98.6666666666667" sap2010:WorkflowViewState.IdRef="State_4">
+    <State x:Name="__ReferenceID6" sap2010:Annotation.AnnotationText="Get next transaction input data" DisplayName="Get Transaction Data" sap:VirtualizedContainerService.HintSize="251.333333333333,98.6666666666667" sap2010:WorkflowViewState.IdRef="State_4">
       <State.Entry>
         <Sequence sap2010:Annotation.AnnotationText="Data retrieval mechanism. The TransactionNumber variable holds the current transaction number. Incrementing this number means getting the next transaction. For a robot retry, the number is not increased, in case of application exception, until the max retry number.&#xA;TransactionItem type is System.Data.DataRow and is set to a row from input workbook based on TransactionNumber value." DisplayName="Retrieve Data" sap:VirtualizedContainerService.HintSize="902.666666666667,694.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
           <Sequence.Variables>
@@ -186,7 +186,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <Transition.To>
-            <State x:Name="__ReferenceID7" sap2010:Annotation.AnnotationText="A transaction either succeeds or fails with a Business Rule Exception or a System Error. For System Error, it can be retried." DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="231.333333333333,148.666666666667" sap2010:WorkflowViewState.IdRef="State_3">
+            <State x:Name="__ReferenceID8" sap2010:Annotation.AnnotationText="A transaction either succeeds or fails with a Business Rule Exception or a System Error. For System Error, it can be retried." DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="485.333333333333,1015.33333333333" sap2010:WorkflowViewState.IdRef="State_3">
               <State.Entry>
                 <TryCatch DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="438.666666666667,542" sap2010:WorkflowViewState.IdRef="TryCatch_1">
                   <sap:WorkflowViewStateService.ViewState>
@@ -217,6 +217,7 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InOutArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[TransactionItem]</InOutArgument>
                           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
+                          <InArgument x:TypeArguments="sd:DataTable" x:Key="io_BdProcuraduriaQuestions">[V_BdQuestionsProcuraduria]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -327,9 +328,9 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <Transition.Condition>[SystemError IsNot Nothing]</Transition.Condition>
                   <Transition.To>
-                    <State x:Name="__ReferenceID8" sap2010:Annotation.AnnotationText="Read Config, Init Applications" DisplayName="Init" sap:VirtualizedContainerService.HintSize="254,90" sap2010:WorkflowViewState.IdRef="State_2">
+                    <State x:Name="__ReferenceID9" sap2010:Annotation.AnnotationText="Read Config, Init Applications" DisplayName="Init" sap:VirtualizedContainerService.HintSize="254,90" sap2010:WorkflowViewState.IdRef="State_2">
                       <State.Entry>
-                        <TryCatch DisplayName="Catch intialization exceptions" sap:VirtualizedContainerService.HintSize="902.666666666667,1856.66666666667" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                        <TryCatch DisplayName="Catch intialization exceptions" sap:VirtualizedContainerService.HintSize="906.666666666667,1856.66666666667" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -337,14 +338,14 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <TryCatch.Try>
-                            <Sequence DisplayName="Init State" sap:VirtualizedContainerService.HintSize="864,1618.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                            <Sequence DisplayName="Init State" sap:VirtualizedContainerService.HintSize="868,1618.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_4">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Assign DisplayName="Initialize SystemError" sap:VirtualizedContainerService.HintSize="822,62" sap2010:WorkflowViewState.IdRef="Assign_5">
+                              <Assign DisplayName="Initialize SystemError" sap:VirtualizedContainerService.HintSize="826,62" sap2010:WorkflowViewState.IdRef="Assign_5">
                                 <Assign.To>
                                   <OutArgument x:TypeArguments="s:Exception">[SystemError]</OutArgument>
                                 </Assign.To>
@@ -352,7 +353,7 @@
                                   <InArgument x:TypeArguments="s:Exception">[Nothing]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <If Condition="[Config is Nothing]" DisplayName="If first run - read Config file" sap:VirtualizedContainerService.HintSize="822,52.6666666666667" sap2010:WorkflowViewState.IdRef="If_1">
+                              <If Condition="[Config is Nothing]" DisplayName="If first run - read Config file" sap:VirtualizedContainerService.HintSize="826,52.6666666666667" sap2010:WorkflowViewState.IdRef="If_1">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -399,12 +400,12 @@
                                   </Sequence>
                                 </If.Then>
                               </If>
-                              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke InitiAllApplications workflow" sap:VirtualizedContainerService.HintSize="822,86.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\InitAllApplications.xaml">
+                              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke InitiAllApplications workflow" sap:VirtualizedContainerService.HintSize="826,86.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\InitAllApplications.xaml">
                                 <ui:InvokeWorkflowFile.Arguments>
                                   <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
                                 </ui:InvokeWorkflowFile.Arguments>
                               </ui:InvokeWorkflowFile>
-                              <If Condition="[TransactionData is Nothing]" DisplayName="If first run - read input data and initialize status file" sap:VirtualizedContainerService.HintSize="822,1205.33333333333" sap2010:WorkflowViewState.IdRef="If_11">
+                              <If Condition="[TransactionData is Nothing]" DisplayName="If first run - read input data and initialize status file" sap:VirtualizedContainerService.HintSize="826,1205.33333333333" sap2010:WorkflowViewState.IdRef="If_11">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -412,13 +413,13 @@
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                                 <If.Then>
-                                  <Sequence DisplayName="Read Input Data and create Status file" sap:VirtualizedContainerService.HintSize="676,1051.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                  <Sequence DisplayName="Read Input Data and create Status file" sap:VirtualizedContainerService.HintSize="680,1051.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_23">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <Flowchart sap2010:Annotation.AnnotationText="Input data can be:&#xA; - CSV format if the input file name ends with &quot;.csv&quot;&#xA; - Excel format for any other extension (the default case of the Flow Switch)" DisplayName="Read Input Data - multiple types supported" sap:VirtualizedContainerService.HintSize="634,698" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+                                    <Flowchart sap2010:Annotation.AnnotationText="Input data can be:&#xA; - CSV format if the input file name ends with &quot;.csv&quot;&#xA; - Excel format for any other extension (the default case of the Flow Switch)" DisplayName="Read Input Data - multiple types supported" sap:VirtualizedContainerService.HintSize="638,698" sap2010:WorkflowViewState.IdRef="Flowchart_1">
                                       <Flowchart.Variables>
                                         <Variable x:TypeArguments="ui:GenericValue" Name="InputFileExtension" />
                                       </Flowchart.Variables>
@@ -430,12 +431,13 @@
                                           <av:Size x:Key="ShapeSize">60,74.6666666666667</av:Size>
                                           <av:PointCollection x:Key="ConnectorLocation">300,77.1666666666667 300,107.166666666667 309.895,107.166666666667 309.895,127.5</av:PointCollection>
                                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          <x:Double x:Key="Width">604</x:Double>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
                                       <Flowchart.StartNode>
-                                        <x:Reference>__ReferenceID4</x:Reference>
+                                        <x:Reference>__ReferenceID5</x:Reference>
                                       </Flowchart.StartNode>
-                                      <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+                                      <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_1">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <av:Point x:Key="ShapeLocation">178.895,127.5</av:Point>
@@ -462,9 +464,9 @@
                                               <FlowStep x:Name="__ReferenceID3">
                                                 <sap:WorkflowViewStateService.ViewState>
                                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                    <av:Point x:Key="ShapeLocation">390,383.666666666667</av:Point>
+                                                    <av:Point x:Key="ShapeLocation">400,273.666666666667</av:Point>
                                                     <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
-                                                    <av:PointCollection x:Key="ConnectorLocation">490,436.333333333333 490,473.666666666667</av:PointCollection>
+                                                    <av:PointCollection x:Key="ConnectorLocation">500,326.333333333333 500,393.666666666667</av:PointCollection>
                                                   </scg:Dictionary>
                                                 </sap:WorkflowViewStateService.ViewState>
                                                 <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[TransactionData]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="[Config(&quot;InputFileSheetName&quot;).ToString]" WorkbookPath="[Config(&quot;InputFilePath&quot;).ToString]">
@@ -475,45 +477,63 @@
                                                   </sap:WorkflowViewStateService.ViewState>
                                                 </ui:ReadRange>
                                                 <FlowStep.Next>
-                                                  <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+                                                  <FlowStep x:Name="__ReferenceID4">
                                                     <sap:WorkflowViewStateService.ViewState>
                                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                        <av:Point x:Key="ShapeLocation">390,473.666666666667</av:Point>
+                                                        <av:Point x:Key="ShapeLocation">400,393.666666666667</av:Point>
                                                         <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
+                                                        <av:PointCollection x:Key="ConnectorLocation">500,446.333333333333 500,493.666666666667</av:PointCollection>
                                                       </scg:Dictionary>
                                                     </sap:WorkflowViewStateService.ViewState>
-                                                    <ui:CommentOut sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-                                                      <ui:CommentOut.Body>
-                                                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="476,259.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_26">
-                                                          <sap:WorkflowViewStateService.ViewState>
-                                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                            </scg:Dictionary>
-                                                          </sap:WorkflowViewStateService.ViewState>
-                                                          <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope - Read input Data" sap:VirtualizedContainerService.HintSize="434,167.333333333333" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" ReadOnly="True" Visible="False" WorkbookPath="[Config(&quot;InputFilePath&quot;).ToString]">
-                                                            <ui:ExcelApplicationScope.Body>
-                                                              <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                                                                <ActivityAction.Argument>
-                                                                  <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                                                                </ActivityAction.Argument>
-                                                                <ui:ExcelReadRange AddHeaders="True" DataTable="[TransactionData]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[Config(&quot;InputFileSheetName&quot;).ToString]">
-                                                                  <ui:ExcelReadRange.Range>
-                                                                    <InArgument x:TypeArguments="x:String">
-                                                                      <Literal x:TypeArguments="x:String" Value="" />
-                                                                    </InArgument>
-                                                                  </ui:ExcelReadRange.Range>
-                                                                </ui:ExcelReadRange>
-                                                              </ActivityAction>
-                                                            </ui:ExcelApplicationScope.Body>
-                                                            <sap:WorkflowViewStateService.ViewState>
-                                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                              </scg:Dictionary>
-                                                            </sap:WorkflowViewStateService.ViewState>
-                                                          </ui:ExcelApplicationScope>
-                                                        </Sequence>
-                                                      </ui:CommentOut.Body>
-                                                    </ui:CommentOut>
+                                                    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[V_BdQuestionsProcuraduria]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="Questions" WorkbookPath="[Config(&quot;BdQuestionsProcaduriaPath&quot;).ToString()]">
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                    </ui:ReadRange>
+                                                    <FlowStep.Next>
+                                                      <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+                                                        <sap:WorkflowViewStateService.ViewState>
+                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                            <av:Point x:Key="ShapeLocation">400,493.666666666667</av:Point>
+                                                            <av:Size x:Key="ShapeSize">200,52.6666666666667</av:Size>
+                                                          </scg:Dictionary>
+                                                        </sap:WorkflowViewStateService.ViewState>
+                                                        <ui:CommentOut sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                                                          <ui:CommentOut.Body>
+                                                            <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="476,259.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                                                              <sap:WorkflowViewStateService.ViewState>
+                                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                </scg:Dictionary>
+                                                              </sap:WorkflowViewStateService.ViewState>
+                                                              <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope - Read input Data" sap:VirtualizedContainerService.HintSize="434,167.333333333333" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" ReadOnly="True" Visible="False" WorkbookPath="[Config(&quot;InputFilePath&quot;).ToString]">
+                                                                <ui:ExcelApplicationScope.Body>
+                                                                  <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                                                    <ActivityAction.Argument>
+                                                                      <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                                                    </ActivityAction.Argument>
+                                                                    <ui:ExcelReadRange AddHeaders="True" DataTable="[TransactionData]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[Config(&quot;InputFileSheetName&quot;).ToString]">
+                                                                      <ui:ExcelReadRange.Range>
+                                                                        <InArgument x:TypeArguments="x:String">
+                                                                          <Literal x:TypeArguments="x:String" Value="" />
+                                                                        </InArgument>
+                                                                      </ui:ExcelReadRange.Range>
+                                                                    </ui:ExcelReadRange>
+                                                                  </ActivityAction>
+                                                                </ui:ExcelApplicationScope.Body>
+                                                                <sap:WorkflowViewStateService.ViewState>
+                                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                  </scg:Dictionary>
+                                                                </sap:WorkflowViewStateService.ViewState>
+                                                              </ui:ExcelApplicationScope>
+                                                            </Sequence>
+                                                          </ui:CommentOut.Body>
+                                                        </ui:CommentOut>
+                                                      </FlowStep>
+                                                    </FlowStep.Next>
                                                   </FlowStep>
                                                 </FlowStep.Next>
                                               </FlowStep>
@@ -522,7 +542,7 @@
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <av:Point x:Key="ShapeLocation">245.895,237.5</av:Point>
                                                 <av:Size x:Key="ShapeSize">108,86.6666666666667</av:Size>
-                                                <av:PointCollection x:Key="Default">353.895,302.5 383.895,302.5 383.895,410 390,410</av:PointCollection>
+                                                <av:PointCollection x:Key="Default">353.895,302.5 383.895,302.5 383.895,300 400,300</av:PointCollection>
                                                 <av:PointCollection x:Key="CSVConnector">245.895,259.25 100,259.25 100,284.5</av:PointCollection>
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
@@ -548,9 +568,10 @@
                                       <x:Reference>__ReferenceID1</x:Reference>
                                       <x:Reference>__ReferenceID2</x:Reference>
                                       <x:Reference>__ReferenceID3</x:Reference>
+                                      <x:Reference>__ReferenceID4</x:Reference>
                                     </Flowchart>
-                                    <ui:LogMessage DisplayName="Log Message -  Transactions Count" sap:VirtualizedContainerService.HintSize="634,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_27" Level="Info" Message="[&quot;Total number of transactions: &quot; + TransactionData.Rows.Count.ToString]" />
-                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke CreateStatusFile workflow" sap:VirtualizedContainerService.HintSize="634,86.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" UnSafe="False" WorkflowFileName="Framework\DefineStatusFile.xaml">
+                                    <ui:LogMessage DisplayName="Log Message -  Transactions Count" sap:VirtualizedContainerService.HintSize="638,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_27" Level="Info" Message="[&quot;Total number of transactions: &quot; + TransactionData.Rows.Count.ToString]" />
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke CreateStatusFile workflow" sap:VirtualizedContainerService.HintSize="638,86.6666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" UnSafe="False" WorkflowFileName="Framework\DefineStatusFile.xaml">
                                       <ui:InvokeWorkflowFile.Arguments>
                                         <InArgument x:TypeArguments="sd:DataTable" x:Key="in_InputDataStructure">[TransactionData.Clone]</InArgument>
                                         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
@@ -564,7 +585,7 @@
                             </Sequence>
                           </TryCatch.Try>
                           <TryCatch.Catches>
-                            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="868.666666666667,22" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="872.666666666667,22" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -609,7 +630,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <Transition.To>
-                            <x:Reference>__ReferenceID5</x:Reference>
+                            <x:Reference>__ReferenceID6</x:Reference>
                           </Transition.To>
                           <Transition.Action>
                             <ui:Comment sap:VirtualizedContainerService.HintSize="314,74" sap2010:WorkflowViewState.IdRef="Comment_1" Text="Default transition is picked up if there are no errors during initialization" />
@@ -626,7 +647,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <Transition.To>
-                            <State x:Name="__ReferenceID6" sap2010:Annotation.AnnotationText="Process stops here" DisplayName="End Process" sap:VirtualizedContainerService.HintSize="144,90.6666666666667" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
+                            <State x:Name="__ReferenceID7" sap2010:Annotation.AnnotationText="Process stops here" DisplayName="End Process" sap:VirtualizedContainerService.HintSize="144,90.6666666666667" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
                               <State.Entry>
                                 <Sequence sap:VirtualizedContainerService.HintSize="486,882" sap2010:WorkflowViewState.IdRef="Sequence_25">
                                   <sap:WorkflowViewStateService.ViewState>
@@ -729,7 +750,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <Transition.To>
-                    <x:Reference>__ReferenceID5</x:Reference>
+                    <x:Reference>__ReferenceID6</x:Reference>
                   </Transition.To>
                   <Transition.Condition>[BusinessRuleException IsNot Nothing]</Transition.Condition>
                 </Transition>
@@ -744,7 +765,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <Transition.To>
-                    <x:Reference>__ReferenceID5</x:Reference>
+                    <x:Reference>__ReferenceID6</x:Reference>
                   </Transition.To>
                   <Transition.Condition>[SystemError Is Nothing And BusinessRuleException is Nothing]</Transition.Condition>
                 </Transition>
@@ -767,7 +788,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <Transition.To>
-            <x:Reference>__ReferenceID6</x:Reference>
+            <x:Reference>__ReferenceID7</x:Reference>
           </Transition.To>
           <Transition.Action>
             <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_23" Level="Info" Message="Process finished due to no more transaction data" />
@@ -776,9 +797,9 @@
         </Transition>
       </State.Transitions>
     </State>
-    <x:Reference>__ReferenceID7</x:Reference>
-    <x:Reference>__ReferenceID6</x:Reference>
     <x:Reference>__ReferenceID8</x:Reference>
+    <x:Reference>__ReferenceID7</x:Reference>
+    <x:Reference>__ReferenceID9</x:Reference>
     <StateMachine.Variables>
       <Variable x:TypeArguments="sd:DataRow" Name="TransactionItem" />
       <Variable x:TypeArguments="s:Exception" Name="SystemError" />
@@ -793,6 +814,7 @@
       <Variable x:TypeArguments="sd:DataTable" Name="StatusFileStructure" />
       <Variable x:TypeArguments="x:String" Name="StatusFileName" />
       <Variable x:TypeArguments="sd1:Stopwatch" sap2010:Annotation.AnnotationText="Used to measure the execution time for a transaction.&#xA;The stopwatch is started after the transaction data is fetched, inside the GetTransactionData workflow and it is stopped in the SetTransactionStatus workflow." Name="TransactionExecutionWatch" />
+      <Variable x:TypeArguments="sd:DataTable" Name="V_BdQuestionsProcuraduria" />
     </StateMachine.Variables>
   </StateMachine>
 </Activity>

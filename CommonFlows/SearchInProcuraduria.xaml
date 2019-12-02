@@ -2,11 +2,12 @@
   <x:Members>
     <x:Property Name="in_TransactionItem" Type="InOutArgument(sd:DataRow)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="io_BdProcuraduriaQuestions" Type="InArgument(sd:DataTable)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>534.666666666667,1052.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>660.666666666667,1802.66666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SearchInProcuraduria_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -59,7 +60,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Search on the Procuraduria website " DisplayName="SearchInProcuraduria" sap:VirtualizedContainerService.HintSize="514.666666666667,992.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Search on the Procuraduria website " DisplayName="SearchInProcuraduria" sap:VirtualizedContainerService.HintSize="514.666666666667,1730.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Default="False" Name="v_exists" />
       <Variable x:TypeArguments="x:String" Name="v_Pregunta">
@@ -74,15 +75,15 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="472.666666666667,872.666666666667" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="472.666666666667,1610" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" Hidden="False" sap:VirtualizedContainerService.HintSize="434,638" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False" Url="[in_Config(&quot;UrlProcuraduria&quot;).ToString()]">
+        <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" Hidden="False" sap:VirtualizedContainerService.HintSize="434,1372" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False" Url="[in_Config(&quot;UrlProcuraduria&quot;).ToString()]">
           <ui:OpenBrowser.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,539.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,1273.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -101,7 +102,64 @@
                     <OutArgument x:TypeArguments="x:String">[v_Pregunta]</OutArgument>
                   </ui:GetValue.Value>
                 </ui:GetValue>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[String.Format(&quot;Pregunta {0}&quot;,v_Pregunta)]" />
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[String.Format(&quot;Pregunta {0}&quot;,v_Pregunta)]" />
+                <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'INPUT  txtNumID'" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="SetValue_1" Text="[in_TransactionItem.Item(&quot;Numero&quot;).ToString()]">
+                  <ui:SetValue.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c74962e2d7845c1cd288fa60e6de783c" Selector="&lt;html app='chrome.exe' title='Procuraduría General de la Nación, República de Colombia' /&gt;&lt;webctrl id='txtNumID' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                  </ui:SetValue.Target>
+                </ui:SetValue>
+                <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Item 'SELECT  ddlTipoID'" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="SelectItem_1" Item="Cédula de ciudadanía">
+                  <ui:SelectItem.Items>
+                    <scg:List x:TypeArguments="x:String" Capacity="8">
+                      <x:String>Seleccione...</x:String>
+                      <x:String>Cédula de ciudadanía</x:String>
+                      <x:String>PEP</x:String>
+                      <x:String>Nit</x:String>
+                      <x:String>Cédula extranjeria</x:String>
+                    </scg:List>
+                  </ui:SelectItem.Items>
+                  <ui:SelectItem.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="6a9125b242382fb6b505059f787d5017" Selector="&lt;html app='chrome.exe' title='Procuraduría General de la Nación, República de Colombia' /&gt;&lt;webctrl tag='SELECT' /&gt;" WaitForReady="INTERACTIVE" />
+                  </ui:SelectItem.Target>
+                </ui:SelectItem>
+                <ui:UiElementExists DisplayName="Element Exists 'H2'" Exists="[v_exists]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                  <ui:UiElementExists.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="264352946e5a1ef8f3098ca10e9c6ae3" Selector="&lt;html app='chrome.exe' title='Procuraduría General de la Nación, República de Colombia' /&gt;&lt;webctrl parentid='divSec' tag='H2' aaname='El ciudadano no presenta antecedentes' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                  </ui:UiElementExists.Target>
+                </ui:UiElementExists>
+                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click btnConsultar'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                  <ui:Click.CursorPosition>
+                    <ui:CursorPosition Position="Center">
+                      <ui:CursorPosition.OffsetX>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetX>
+                      <ui:CursorPosition.OffsetY>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetY>
+                    </ui:CursorPosition>
+                  </ui:Click.CursorPosition>
+                  <ui:Click.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="277474b384ef80fefeb4e5d3849124b0" Selector="&lt;html app='chrome.exe' title='Procuraduría General de la Nación, República de Colombia' /&gt;&lt;webctrl id='btnConsultar' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                  </ui:Click.Target>
+                </ui:Click>
+                <If Condition="[v_exists]" DisplayName="Ciudadano no presenta antecedentes" sap:VirtualizedContainerService.HintSize="334,52.6666666666667" sap2010:WorkflowViewState.IdRef="If_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_2">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Object">[in_TransactionItem.Item("Procuraduria")]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Object">["El ciudadano no presenta antecedentes"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </If.Then>
+                </If>
                 <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="CloseTab_1" />
               </Sequence>
             </ActivityAction>
@@ -115,7 +173,7 @@
         </ui:OpenBrowser>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="438.666666666667,21.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="438.666666666667,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
